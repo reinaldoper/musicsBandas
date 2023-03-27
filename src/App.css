@@ -1,38 +1,74 @@
-.App {
+body {
+  background-color: aquamarine;
+}
+
+ul {
+  display: flex;
+  justify-content:space-evenly;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #6e6c6c;
+  height: 15vh;
+}
+
+li {
+  float: left;
+  color: white;
+  font-size: 5vh;
+  margin-top: 1.9vh;
   text-align: center;
+  padding: 14px 16px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+li img {
+  display: flex;
+  height: 9vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+li button {
+  text-align: center;
+  margin-top: 1.9vh;
+  padding-top: 5px;
+  padding-left: 15px;
+  border-radius: 8px;
+  font-size: 2vh;
+  display: flex;
+  height: 4vh;
+  width: 10vh;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+li input {
+  text-align: center;
+  margin-top: 1.9vh;
+  padding-top: 4px;
+  border-radius: 8px;
+  font-size: 2vh;
+  display: flex;
+  height: 3vh;
+  width: 13vh;
+  border: 0;
+  outline: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.music-render {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.control-music {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 8%;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.img-music {
+  width: 31vh;
+  border-radius: 8px;
 }

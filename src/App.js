@@ -10,6 +10,9 @@ function App() {
   const handleChange = async (event) => {
     const options = {
       method: 'GET',
+      headers: {
+        secretKey: '.env'
+      }
     };
     const result = await search(name, options);
     setListMusic(result.data);

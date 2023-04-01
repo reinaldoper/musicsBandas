@@ -10,7 +10,7 @@ function App() {
   const [favorites, setFavorites] = useState([])
   const [music, setMusic] = useState(true)
 
-  const handleChange = async (event) => {
+  const handleChange = async () => {
     const options = {
       method: 'GET',
       secretKey: '.env'

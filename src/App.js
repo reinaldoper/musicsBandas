@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { search } from './service/feths';
 import CardMusic from './CardMusic';
 
@@ -10,10 +10,18 @@ function App() {
   const [favorites, setFavorites] = useState([])
   const [music, setMusic] = useState(true)
 
+  useEffect(() => {
+    const local = () => {
+      const result = JSON.parse(localStorage.getItem('music'));
+      setFavorites(result);
+    };
+    local();
+  }, [])
+
   const handleChange = async () => {
     const options = {
       method: 'GET',
-      secretKey: '.env'
+      headers: '.env'
     };
     const result = await search(name, options);
     setListMusic(result.data);
@@ -22,17 +30,24 @@ function App() {
 
   const handleClicks = (id, { target }) => {
     if (!target.checked) {
-      const music = favorites.filter((item) => item.id !== id);
+      const resul = JSON.parse(localStorage.getItem('music'));
+      const music = resul.filter((item) => item.id !== id);
       setFavorites(music);
+      localStorage.setItem('music', JSON.stringify(music));
     } else {
       const result = listMusic.find((music) => music.id === id);
-      setFavorites([...favorites, result])
+      setFavorites([...favorites, result]);
+      localStorage.setItem('music', JSON.stringify([...favorites, result]));
     }
   };
 
   const handleNotFavorities = (id) => {
-    const music = favorites.filter((item) => item.id !== id);
+    /* const music = favorites.filter((item) => item.id !== id);
+    setFavorites(music); */
+    const resul = JSON.parse(localStorage.getItem('music'));
+    const music = resul.filter((item) => item.id !== id);
     setFavorites(music);
+    localStorage.setItem('music', JSON.stringify(music));
   }
 
   const handleFavoriti = () => {
@@ -48,9 +63,9 @@ function App() {
         <li><input type='text' value={name} onChange={(e) => setName(e.target.value)} placeholder='search' /></li>
         <li><button type='button' onClick={handleChange}>search</button></li>
       </ul>
-      {listMusic.length > 0 && music ? 
-          <CardMusic listRender={listMusic} favorites={favorites} handleClicks={handleClicks}/> :
-          <CardMusic listRender={favorites} favorites={favorites} handleClicks={handleNotFavorities}/>}
+      {listMusic.length > 0 && music ?
+        <CardMusic listRender={listMusic} favorites={favorites} handleClicks={handleClicks} /> :
+        <CardMusic listRender={favorites} favorites={favorites} handleClicks={handleNotFavorities} />}
     </div>
   );
 }

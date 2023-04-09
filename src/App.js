@@ -42,8 +42,6 @@ function App() {
   };
 
   const handleNotFavorities = (id) => {
-    /* const music = favorites.filter((item) => item.id !== id);
-    setFavorites(music); */
     const resul = JSON.parse(localStorage.getItem('music'));
     const music = resul.filter((item) => item.id !== id);
     setFavorites(music);

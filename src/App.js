@@ -21,7 +21,7 @@ function App() {
   const handleChange = async () => {
     const options = {
       method: 'GET',
-      headers: '.env'
+      secretKey: '.env'
     };
     const result = await search(name, options);
     setListMusic(result.data);

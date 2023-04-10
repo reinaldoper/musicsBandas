@@ -21,11 +21,15 @@ function App() {
   const handleChange = async () => {
     const options = {
       method: 'GET',
-      secretKey: '.env'
+      headers: '.env',
     };
-    const result = await search(name, options);
-    setListMusic(result.data);
-    setMusic(true)
+    if (name.length === 0) {
+      alert('Please provide a name');
+    } else {
+      const result = await search(name, options);
+      setListMusic(result.data);
+      setMusic(true)
+    }
   };
 
   const handleClicks = (id, { target }) => {
